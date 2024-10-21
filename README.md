@@ -10,7 +10,7 @@ It can be installed from the PyPI repository.
 ```bash
 pip install mdocs
 ```
-[https://pypi.org/](https://pypi.org/)
+[https://pypi.org/project/mdocs/0.1.0/](https://pypi.org/project/mdocs/0.1.0/)
 
 ## Usage
 
