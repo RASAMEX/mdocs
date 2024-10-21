@@ -1,0 +1,11 @@
+# Archivos de distribución y construcción
+*.egg-info
+dist/
+build/
+
+# Pruebas locales
+*.json
+
+# Cache
+**/__pycache__/
+*.py[cod]
