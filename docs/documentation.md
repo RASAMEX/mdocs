@@ -1,6 +1,5 @@
 # mdocs
-
-mdocs allows you to extract docstrings from Python functions to create a documentation file in Markdown format. It is designed as an alternative for projects that consist of just a few functions and do not require more sophisticated tools. We will obtain an MD file that can easily be linked to the README of our repository to present accessible and well-organized technical documentation to clients or users.
+mdocs allows you to extract docstrings from Python functions and class to create a documentation file in Markdown format. It is designed as an alternative for projects that consist of just a few functions and do not require more sophisticated tools. We will obtain an MD file that can easily be linked to the README of our repository to present accessible and well-organized technical documentation to clients or users.
 
 ## Module mdocs.py
 ### main( )
@@ -26,6 +25,8 @@ Returns:
 - None
 
 
+
+---
 
 ## Module creation_functions.py
 ### read_config_file( )
@@ -67,10 +68,10 @@ Returns:
 
 ### extract_functions_with_docstring( )
 
-Extracts functions and their docstrings from a list of Python files.
+Extracts functions or class and their docstrings from a list of Python files.
 
 This function parses each Python file in the provided list, extracting the 
-function names and their associated docstrings, if available.
+function or class names and their associated docstrings, if available.
 
 Args:
 - paths (list): A list of file paths to Python files.
@@ -137,6 +138,8 @@ Returns:
 
 
 
+---
+
 ## Module config_functions.py
 ### validate_required_fields( )
 
@@ -170,4 +173,6 @@ Returns:
 - None
 
 
+
+---
 

@@ -45,7 +45,7 @@ This will create a file named **documentation.md** that will contain the documen
 
 ## For it to work.
 
-For now, it only extracts docstrings from functions, but more functionality is expected to be added.
+For now, it only extracts docstrings from functions and class, but more functionality is expected to be added.
 
 It is expected to find a docstring with the following structure:
 
