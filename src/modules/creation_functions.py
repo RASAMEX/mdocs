@@ -75,10 +75,10 @@ def find_python_files(directory):
 
 def extract_functions_with_docstring(paths):
     """
-    Extracts functions and their docstrings from a list of Python files.
+    Extracts functions or class and their docstrings from a list of Python files.
 
     This function parses each Python file in the provided list, extracting the 
-    function names and their associated docstrings, if available.
+    function or class names and their associated docstrings, if available.
 
     Args:
         paths (list): A list of file paths to Python files.
@@ -100,6 +100,14 @@ def extract_functions_with_docstring(paths):
 
         for node in ast.walk(tree):
 
+            if isinstance(node, ast.ClassDef):
+                class_name = node.name
+                docstring = ast.get_docstring(node)
+                functions.append((f"Class: {class_name}", docstring))
+
+                logging.debug(
+                    f'Class {class_name} from {module_name} extracted.')
+                
             if isinstance(node, ast.FunctionDef):
                 func_name = node.name
                 docstring = ast.get_docstring(node)
@@ -205,7 +213,7 @@ def write_to_md(source_file, config_file, output_file):
         with open(output_file, "w", encoding="utf-8") as file:
 
             if title != '':
-                file.write(f"# {title}\n\n")
+                file.write(f"# {title}\n")      
             if description != '':
                 file.write(f"{description}\n\n")
             if developer != '':
@@ -224,8 +232,10 @@ def write_to_md(source_file, config_file, output_file):
                     file.write(f"### {func_name}( )\n")
 
                     if docstring:
+                        docstring = format_section("Methods", docstring)
                         docstring = format_section("Args", docstring)
                         docstring = format_section("Returns", docstring)
+                        docstring = format_section("Raises", docstring)
                         docstring = format_example(docstring)
                         file.write(f"\n{docstring}\n\n\n")
 
@@ -237,6 +247,7 @@ def write_to_md(source_file, config_file, output_file):
 
                         logging.warning(
                             f"Function {func_name} _No docstring available_")
+                file.write(f"---\n\n")
 
         logging.info(
             f'The documentation was successfully generated in the file "{output_file}"')
